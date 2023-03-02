@@ -1,4 +1,4 @@
-name: trivy-security-scanning
+name: Lint-Test-Trivy-Snyk
 on: push
 
 permissions:
@@ -29,7 +29,7 @@ jobs:
           scan-type: 'config'
           hide-progress: false
           format: 'sarif'
-          scan-ref: 'sdlc-demo'
+          scan-ref: 'charts/sdlc-demo'
           output: 'trivy-results.sarif'
           exit-code: '1'
           ignore-unfixed: true
