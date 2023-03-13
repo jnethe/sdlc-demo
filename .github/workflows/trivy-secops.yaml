@@ -1,8 +1,8 @@
 name: Lint-Test-Trivy-Snyk
-on: push
-
-permissions:
-  security-events: write # To upload sarif files
+on: 
+  push:
+    permissions:
+      security-events: write # To upload sarif files
 
 jobs:
   chart-test:
