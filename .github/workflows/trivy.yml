@@ -2,12 +2,10 @@ name: Trivy Vulnerability Scan
 
 on:
   push:
-    branches: [ main, feature/trivy-gha ]
+    branches: [ main]
   pull_request:
     branches: [ main ]
-  schedule:
-    - cron: '0 0 * * *' # Run daily at 00:00
-
+ 
 jobs:
   trivy_scan:
     runs-on: ubuntu-latest
