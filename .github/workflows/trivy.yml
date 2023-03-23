@@ -1,0 +1,29 @@
+name: Trivy Vulnerability Scan
+
+on:
+  push:
+    branches: [ main, feature/trivy-gha ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 * * *' # Run daily at 00:00
+
+jobs:
+  trivy_scan:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install and run Trivy
+      run: |
+        sudo apt-get install wget apt-transport-https gnupg lsb-release -y
+        wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | sudo gpg --dearmor -o /usr/share/keyrings/trivy-archive-keyring.gpg
+        echo "deb [signed-by=/usr/share/keyrings/trivy-archive-keyring.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+        sudo apt-get update
+        sudo apt-get install trivy -y
+        trivy fs --exit-code 1 --severity CRITICAL,HIGH ./
+
+    - name: Scan Python dependencies
+      run: |
+        trivy fs --severity HIGH,CRITICAL --output secscan.txt ./requirements.txt

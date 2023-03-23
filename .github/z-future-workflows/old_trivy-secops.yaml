@@ -1,4 +1,4 @@
-name: Lint-Test-Trivy-Snyk
+name: Aquasec-Trivy
 on: 
   push:
     permissions:
