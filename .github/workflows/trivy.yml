@@ -21,3 +21,11 @@ jobs:
         sudo apt-get update
         sudo apt-get install trivy -y
         trivy fs --exit-code 1 --severity CRITICAL,HIGH .
+
+    - name: Repository Scan
+      run: |
+        trivy-image . --format=json > scan.json --format=json 
+
+
+
+
