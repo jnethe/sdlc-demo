@@ -22,8 +22,4 @@ jobs:
         echo "deb [signed-by=/usr/share/keyrings/trivy-archive-keyring.gpg] https://aquasecurity.github.io/trivy-repo/deb $(lsb_release -sc) main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
         sudo apt-get update
         sudo apt-get install trivy -y
-        trivy fs --exit-code 1 --severity CRITICAL,HIGH ./
-
-    - name: Scan Python dependencies
-      run: |
-        trivy fs --severity HIGH,CRITICAL --output secscan.txt ./requirements.txt
+        trivy fs --exit-code 1 --severity --output secscan.txt CRITICAL,HIGH .
