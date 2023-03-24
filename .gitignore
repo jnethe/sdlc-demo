@@ -134,3 +134,9 @@ dmypy.json
 
 # vscode stuff
 *.code-workspace
+
+z-future-workflows/
+
+z-future-workflows/*
+
+trivy-secops.yaml
