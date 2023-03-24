@@ -28,6 +28,6 @@ jobs:
           path: './trivy-fs-scan-results.sarif'
 
       - name: Upload Trivy scan results to GitHub Security Dashboard
-        uses: github/codeql-action/upload-sarif@v1
+        uses: github/codeql-action/upload-sarif@v2
         with:
           sarif_file: 'trivy-fs-scan-results.sarif'
