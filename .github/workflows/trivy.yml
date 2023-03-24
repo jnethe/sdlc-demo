@@ -6,7 +6,7 @@ on:
 jobs:      
   FSbuild:
     name: FSScan
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3      
@@ -18,11 +18,11 @@ jobs:
           scanners: 'vuln,secret,config'
           format: 'sarif'        
           output: 'trivy-fs-scan-results.sarif'
-          severity: 'CRITICAL,HIGH'
+          severity: 'CRITICAL,HIGH.MEDIUM'
 
           
       - name: Upload Trivy scan results as Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:  
           name: 'ScanResults.sarif'
           path: './trivy-fs-scan-results.sarif'
